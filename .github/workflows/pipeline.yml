@@ -15,5 +15,9 @@ jobs:
           node-version: '20'
       - name: Install dependencies
         run: npm install
+      - name: Install ESlint as a development dependency
+        run: npm install eslint @eslint/js --save-dev
+      - name: Initialize default ESlint configuration
+        run: npx eslint --init
       - name: Check style
         run: npm run eslint

@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - master
+
 jobs:
   test:
     timeout-minutes: 60
@@ -17,7 +18,7 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
     - name: Run Playwright tests
-      run: npx playwright test
+      run: npm run test:e2e
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:

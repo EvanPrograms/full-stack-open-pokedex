@@ -37,17 +37,19 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BRANCH: master
           DEFAULT_BUMP: patch
-      - name: Discord Webhook Notify Success
-        uses: rjstone/discord-webhook-notify@v1.0.4
+      - name: Discord Notify Success
+        uses: stegzilla/discord-notify@v4
         if: success()
         with:
           severity: info
-          details: A new version of Pokedex deployed!!!
-          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+          title: Success!
+          message: "**${{ github.event.pull_request.title }}**\n**Creator:** ${{ github.event.pull_request.user.login }}\n${{ github.event.pull_request.html_url }}"
+          webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
       - name: Test Failure
-        uses: rjstone/discord-webhook-notify@v1.0.4
+        uses: stegzilla/discord-notify@v4
         if: failure()
         with:
           severity: error
-          details: The Build failed!!!
-          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+          title: Failure!
+          message: "**${{ github.event.pull_request.title }}**\n**Creator:** ${{ github.event.pull_request.user.login }}\n${{ github.event.pull_request.html_url }}"
+          webhook_url: ${{ secrets.DISCORD_WEBHOOK }}

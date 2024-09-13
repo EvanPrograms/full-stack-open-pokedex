@@ -41,15 +41,21 @@ jobs:
         uses: stegzilla/discord-notify@v4
         if: success()
         with:
-          severity: info
           title: Success!
-          message: "**${{ github.event.pull_request.title }}**\n**Creator:** ${{ github.event.pull_request.user.login }}\n${{ github.event.pull_request.html_url }}"
+          message: |
+            **Event Type**: ${{ github.event_name }}
+            **Commit Message**: ${{ github.event.head_commit.message }}
+            **Committer**: ${{ github.event.head_commit.committer.name }}
+            **Commit URL**: ${{ github.event.head_commit.url }}
           webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
       - name: Test Failure
         uses: stegzilla/discord-notify@v4
         if: failure()
         with:
-          severity: error
           title: Failure!
-          message: "**${{ github.event.pull_request.title }}**\n**Creator:** ${{ github.event.pull_request.user.login }}\n${{ github.event.pull_request.html_url }}"
+          message: |
+            **Event Type**: ${{ github.event_name }}
+            **Commit Message**: ${{ github.event.head_commit.message }}
+            **Committer**: ${{ github.event.head_commit.committer.name }}
+            **Commit URL**: ${{ github.event.head_commit.url }}
           webhook_url: ${{ secrets.DISCORD_WEBHOOK }}

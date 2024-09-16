@@ -45,7 +45,6 @@ jobs:
           message: |
             **Event Type**: ${{ github.event_name }}
             **Commit Message**: ${{ github.event.head_commit.message }}
-            **Committer**: ${{ github.event.head_commit.committer.name }}
             **Commit URL**: ${{ github.event.head_commit.url }}
           webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
       - name: Test Failure
@@ -56,6 +55,5 @@ jobs:
           message: |
             **Event Type**: ${{ github.event_name }}
             **Commit Message**: ${{ github.event.head_commit.message }}
-            **Committer**: ${{ github.event.head_commit.committer.name }}
             **Commit URL**: ${{ github.event.head_commit.url }}
           webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
